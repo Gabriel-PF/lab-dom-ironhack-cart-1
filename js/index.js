@@ -4,6 +4,12 @@ function updateSubtotal(product) {
   console.log('Calculating subtotal, yey!');
 
   //... your code goes here
+  const price = product.querySelector('.price span').innerHTML;
+  const quantity = product.querySelector('.quantity input').value;
+  const subtotalValue = price * quantity;
+  const subtotal = product.querySelector('.subtotal span');
+  subtotal.innerHTML = subtotalValue;
+  return subtotalValue;
 }
 
 function calculateAll() {
@@ -15,10 +21,19 @@ function calculateAll() {
 
   // ITERATION 2
   //... your code goes here
+  let sum = 0;
+
+  const productList = document.getElementsByClassName('product');
+  for (let i = 0; i < productList.length; i++) {
+    sum += updateSubtotal(productList[i]);
+  }
 
   // ITERATION 3
   //... your code goes here
+  const total = document.querySelector('#total-value span');
+  total.innerHTML = sum;
 }
+
 
 // ITERATION 4
 
@@ -26,6 +41,10 @@ function removeProduct(event) {
   const target = event.currentTarget;
   console.log('The target in remove is:', target);
   //... your code goes here
+  const productToBeDeleted = target.parentElement.parentElement;
+  const allProducts = document.querySelector('tbody');
+
+  allProducts.removeChild(productToBeDeleted);
 }
 
 // ITERATION 5
